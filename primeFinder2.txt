@@ -1,0 +1,92 @@
+int a, b, c, d;
+// a = given number
+// b = [2; b]
+// c = remainder
+// d == 0 ? 0 : 1
+
+a = 31;
+b = 2;
+while (b < a)
+{
+    c = a;
+    while (b < c)
+    {
+        c = c - b;
+    }
+    if (c == 0)
+    {
+        d = 0;
+        break;
+    }
+    b++;
+}
+d = 1;
+
+
+a = 31;
+b = 2;
+
+L1:
+    if (a < b or a == b) goto L2;
+        c = a;
+        L3:
+            if (c < b) goto L4;
+            c = c - b;
+        goto L3;
+        L4:
+
+        if (!(c == 0)) goto L5
+            d = 0;
+            // cout << "Non Prime: " << d << endl;
+            // break;
+            // halt
+        L5:
+
+        b++;
+goto L1;
+L2:
+// cout << "Prime: " << d << endl;
+d = 1;
+// halt
+
+
+ldi a,1
+ldi d,255
+L0:
+cmp a,d
+jzi L2
+ldi b,2
+inc a
+dec d
+
+L1:
+    cmp a,b
+    jli L0
+    cmp a,b
+    jzi L0
+        cpr c,a
+        L3:
+            cmp c,b
+            jli L4
+            sub c,b
+        jmpi L3
+        L4:
+
+        and c,c
+        jzi L5
+        cmp a,c
+        jzi L6
+        inc b
+        jmpi L1
+        L5:
+            jmpi L0
+        L6:
+            st (d),a
+            jmpi L0
+
+L2:
+halt
+
+
+
+
